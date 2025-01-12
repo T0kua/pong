@@ -22,9 +22,14 @@ class point:
 
 
 p = point(10, 10)
-
-def Draw(p : point) -> None:
+try:
+    os.system("cls")
+    OS = "cls"
+except:
     os.system("clear")
+    OS = "clear"
+def Draw(p : point) -> None:
+    os.system(OS)
     for m in range(size[1]):
         print("|", end="")
         for n in range(size[0]):
