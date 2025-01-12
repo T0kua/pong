@@ -1,5 +1,6 @@
 import time
 import os
+import function
 
 size = (80,15)
 
@@ -7,7 +8,7 @@ class point:
     def __init__(self,x,y):
         self.x = x
         self.y = y
-        self.vector = [1,1]
+        self.vector = [2,1]
         """
         -1 1   |   1 1
         -1 -1  |    1 -1
@@ -19,16 +20,7 @@ class point:
         self.vector[0], self.vector[1] = - self.vector[0], -self.vector[0]
 
 
-
-
-p = point(10, 10)
-try:
-    os.system("cls")
-    OS = "cls"
-except:
-    os.system("clear")
-    OS = "clear"
-def Draw(p : point) -> None:
+def Draw(p : point, Debug="False") -> None:
     os.system(OS)
     for m in range(size[1]):
         print("|", end="")
@@ -37,18 +29,35 @@ def Draw(p : point) -> None:
                 print("o", end="")
             else:
                 print(" ", end="")
-        print("|\n")
+        print("|", end="")
+        if m == size[1] // 2 and Debug == "True" :
+            print(f"VECTOR [{p.vector[0]}, {p.vector[1]} ]\tPOS - [x:{p.x}, y:{p.y}]")
+        print("\n")
 
 
 
 def Logick(p : point) -> None:
     p.metrix()
-    if p.x == size[0] - 1 or p.x == 0 : p.vector[0] = - p.vector[0]
-    if p.y == size[1] - 1 or p.y == 0 : p.vector[1] = -p.vector[1]
+    if p.x >= size[0] - 1 or p.x == 0 : p.vector[0] = - p.vector[0]
+    if p.y >= size[1] - 1 or p.y == 0 : p.vector[1] = -p.vector[1]
 
+
+Debug = function.get("debug")
+p = point(10,10)
+file = open("json.txt","r")
+OS = function.get("OS")
+while not(OS == "cls" or OS == "clear"):
+        OS = int(input("enter your Operation system:\n1 - windows\t2 - *Unix"))
+        match OS:
+            case 1:
+                OS = "cls"
+            case 2:
+                OS  = "clear"
+function.set("OS", OS)
+file.close()
 
 
 while True:
     Logick(p)
-    Draw(p)
-    time.sleep(0.05)
+    Draw(p,Debug)
+    time.sleep(0.5)
