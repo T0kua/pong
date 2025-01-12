@@ -42,6 +42,8 @@ def Logick(p : point) -> None:
     if p.y >= size[1] - 1 or p.y == 0 : p.vector[1] = -p.vector[1]
 
 
+
+player = 5 # p1.x = 2 p2.x = size[1] - 2
 Debug = function.get("debug")
 p = point(10,10)
 file = open("json.txt","r")
