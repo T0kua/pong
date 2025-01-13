@@ -8,7 +8,7 @@ class point:
     def __init__(self,x,y):
         self.x = x
         self.y = y
-        self.vector = [2,1]
+        self.vector = [1,1]
         """
         -1 1   |   1 1
         -1 -1  |    1 -1
