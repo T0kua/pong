@@ -2,6 +2,7 @@ import os
 import time
 import function
 from pynput import keyboard
+import random
 
 size = (80,15)
 player = 5 # p1x = 2 p2.x = size[0] -2
@@ -16,7 +17,7 @@ class point:
     def __init__(self,x,y):
         self.x = x
         self.y = y
-        self.vector = [1,1]
+        self.vector = [random.choice([-1,1]), random.choice([-1,1])]
         """
         -1 1   |   1 1
         -1 -1  |    1 -1

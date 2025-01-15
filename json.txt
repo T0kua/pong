@@ -1,4 +1,4 @@
 OS=N/A
 debug=False
-reward=1
+reward=0
 author=N/A
