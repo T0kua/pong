@@ -1,4 +1,4 @@
-OS=clear
-debug=True
-reward=0
+OS=N/A
+debug=False
+reward=1
 author=N/A
