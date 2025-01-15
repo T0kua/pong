@@ -10,7 +10,6 @@ playerSize = 2 # size = 1 + (pSize * 2)
 reward = 0
 Debug = function.get("debug")
 cc = 0
-file = open("json.txt","r")
 OS = function.get("OS")
 
 class point:
@@ -37,6 +36,8 @@ def Draw(p : point, Debug="False") -> None:
     global reward
     for m in range(size[1]):
         print("|", end="")
+
+        #drawing player platform and bowl
         for n in range(size[0]):
             if p.y == m and p.x == n:
                 print("0", end="")
@@ -45,6 +46,8 @@ def Draw(p : point, Debug="False") -> None:
             else:
                 print(" ", end="")
         print("|", end="")
+
+        #game information
         if m == size[1] // 2 and Debug == "True" :
             print(f"VECTOR [{p.vector[0]}, {p.vector[1]} ]\tPOS - [x:{p.x}, y:{p.y}]", end="")
         if (m - 1 == (size[1]) // 2):
@@ -52,6 +55,7 @@ def Draw(p : point, Debug="False") -> None:
         if (m - 2 == (size[1]) // 2) and Debug == "True":
             print(f"PLAYER {player} CC {cc  }")
         print("\n")
+
 
 def game_over() -> None :
      global reward
@@ -81,30 +85,29 @@ def Control(key):
          key.char
     except:
          return 0
+    
     if key.char in ['w']:
             if cc > 0 : cc = 0
             cc -= 0.5
     elif key.char in ['s']:
             if cc < 0 : cc = 0
             cc += 0.5
-    if player - playerSize < 0:
-         player = playerSize
-    if player + playerSize > size[1]:
-         player = size[1] - playerSize
+
+    if player - playerSize < 0: player = playerSize
+    if player + playerSize > size[1]: player = size[1] - playerSize
     player += (abs(cc) // 10) * (-1 if cc < 0 else 1) 
     if abs(cc) > 10:
         cc = 0  
     
-
+#pre-settings 
 while not(OS == "cls" or OS == "clear"):
-        OS = int(input("enter your Operation system:\n1 - windows\t2 - *Unix"))
-        match OS:
-            case 1:
-                OS = "cls"
-            case 2:
-                OS  = "clear"
+    OS = int(input("enter your Operation system:\n1 - windows\t2 - *Unix"))
+    match OS:
+        case 1:
+            OS = "cls"
+        case 2:
+            OS  = "clear"
 function.set("OS", OS)
-file.close()
 
 
 while True:
